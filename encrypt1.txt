@@ -1,0 +1,25 @@
+#include <stdio.h>
+void encrypt(char *s){
+    while(*s != '\0'){
+        if(*s >= 'a' && *s < 'z'){
+            *s += 1;
+        }
+        if(*s == 'z'){
+            *s = 'a';
+        }
+        s ++;
+    }
+    printf("%s", *s);
+}
+
+int main(void){
+    char s[100], ch;
+    int i = 0;
+    while((ch = getchar()) != EOF){
+        s[i] = ch;
+        i ++;
+    }
+    s[i] = '\0';
+    encrypt(s);
+}
+        
