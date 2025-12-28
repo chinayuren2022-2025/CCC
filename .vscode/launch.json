@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "gcc - 生成和调试活动文件",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": true,  // 设为 false 表示不用弹出式终端
+            "MIMode": "lldb",
+            "preLaunchTask": "C/C++: gcc build active file" // 这里要和 tasks.json 里的 label 名字一致
+        }
+    ]
+}

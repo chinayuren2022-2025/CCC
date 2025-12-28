@@ -1,0 +1,88 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int data;
+    struct Node *next;
+} node;
+
+node* add_node(int data){
+    node *p = (node*)malloc(sizeof(node));
+
+    if(p == NULL){
+        printf("内存不足！\n");
+        exit(1);
+    }
+
+    p->data = data;
+    p->next = NULL;
+
+    return p;
+}
+
+node* del_node(node *head, int target){
+    if (head == NULL) return NULL;
+
+    if(head->data == target){
+        node* temp = head;
+        head = head->next;
+        free(temp);
+        return head;
+    }
+
+    node *p = head;
+    while(p->next != NULL && (p->next)->data != target){
+        p = p->next;
+    }
+
+    if(p->next == NULL){
+        printf("Target not found!");
+        return head;
+    }
+
+    node *to_del = p->next;
+    p->next = to_del->next;
+
+    free(to_del);
+    return head;
+}
+
+void insert_tail(node *head, int data){
+    node *new_node = add_node(data);
+
+    node *p = head;
+
+    while(p->next != NULL){
+        p = p->next;
+    }
+
+    p->next = new_node;
+}
+
+int main(void){
+    node *n1 = add_node(10);
+    
+    insert_tail(n1, 20);
+    insert_tail(n1, 30);
+    
+    printf("删掉20");
+    n1 = del_node(n1, 20);
+    node *p = n1;
+    while(p != NULL){
+        printf("%d->", p->data);
+        p = p->next;
+    }
+    printf("NULL\n");
+
+    insert_tail(n1, 20);
+    printf("删掉10");
+    n1 = del_node(n1, 10);
+    p = n1;
+    while(p != NULL){
+        printf("%d->", p->data);
+        p = p->next;
+    }
+    printf("NULL\n");
+
+    return 0;
+}

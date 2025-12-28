@@ -1,14 +1,16 @@
 #include <stdio.h>
 void delchar(char *s, char del){
-    char *dest = *s;    //copy the first pointer of original array
+    char *dest = s;    //copy the first pointer of original array
     while(*s != '\0'){
         if(*s != del){
             *dest = *s;
+            dest ++;
         }
         s ++;
     }
+    *dest = '\0';
 }
-int main(voidO){
+int main(void){
     //input
     char s[100], del, ch;
     int i = 0;
@@ -17,9 +19,10 @@ int main(voidO){
         i ++;
     }
     s[i] = '\0';
+    getchar();
     scanf("%c", &del);
 
     delchar(s, del);
 
-    printf("%s");
+    printf("%s", s);
 }
